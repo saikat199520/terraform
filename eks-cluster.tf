@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "eks-cluster" {
-  name     = "eks-${var.env}-cluster-ShowPilot"
+  name     = "eks-${var.env}-cluster"
   role_arn = aws_iam_role.eks-cluster-iam-role.arn
   version  = var.k8s-ver
 
@@ -15,8 +15,8 @@ resource "aws_eks_cluster" "eks-cluster" {
     ]
   }
   tags = {
-    Name = "eks-${var.env}-eks-ShowPilot"
-    "pick" = "ShowPilot"
+    Name = "eks-${var.env}-eks"
+    "pick" = "${var.pick}"
     }
 
   depends_on = [

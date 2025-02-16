@@ -3,8 +3,8 @@ resource "aws_nat_gateway" "eks-nat-gw" {
   subnet_id     = aws_subnet.eks-vpc-pub-sub1.id
 
   tags = {
-    Name = "eks-${var.env}-nat-gw-ShowPilot"
-    "pick" = "ShowPilot"
+    Name = "eks-${var.env}-nat-gw"
+    "pick" = "${var.pick}"
   }
 }
 

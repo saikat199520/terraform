@@ -7,8 +7,8 @@ resource "aws_route_table" "eks-vpc-pub-sub-rt" {
   }
 
   tags = {
-    Name = "eks-${var.env}-vpc-pub-sub-rt-ShowPilot"
-    "pick" = "ShowPilot"
+    Name = "eks-${var.env}-vpc-pub-sub-rt"
+    "pick" = "${var.pick}"
   }
 }
 
@@ -21,8 +21,8 @@ resource "aws_route_table" "eks-vpc-priv-sub1-rt" {
   }
 
   tags = {
-    Name = "eks-${var.env}-vpc-priv-sub1-rt-ShowPilot"
-    "pick" = "ShowPilot"
+    Name = "eks-${var.env}-vpc-priv-sub1-rt"
+    "pick" = "${var.pick}"
   }
 }
 
@@ -35,7 +35,7 @@ resource "aws_route_table" "eks-vpc-priv-sub2-rt" {
   }
 
   tags = {
-    Name = "eks-${var.env}-vpc-priv-sub2-rt-ShowPilot"
-    "pick" = "ShowPilot"
+    Name = "eks-${var.env}-vpc-priv-sub2-rt"
+    "pick" = "${var.pick}"
   }
 }

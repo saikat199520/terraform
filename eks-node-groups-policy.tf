@@ -2,8 +2,8 @@ resource "aws_iam_role" "eks-nodes-general-role" {
   name = "eks-${var.env}-nodes-general-role"
 
   tags = {
-    Name = "eks-${var.env}-node-role-ShowPilot"
-    "pick" = "ShowPilot"
+    Name = "eks-${var.env}-node-role"
+    "pick" = "${var.pick}"
   }
 
   assume_role_policy = <<POLICY
@@ -60,12 +60,12 @@ resource "aws_eks_node_group" "eks-nodes-general" {
   instance_types       = ["t3a.large"]
   
   tags = {
-    Name = "eks-${var.env}-node-group-ShowPilot"
-    "pick" = "ShowPilot"
+    Name = "eks-${var.env}-node-group"
+    "pick" = "${var.pick}"
     }
 
   labels = {
-    role = "eks-nodes-ShowPilot"
+    role = "eks-nodes"
   }
 
   version = var.k8s-ver #K8s Version

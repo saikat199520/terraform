@@ -1,9 +1,9 @@
 resource "aws_iam_role" "eks-cluster-iam-role" {
-  name = "eks-${var.env}-cluster-iam-role-for-ShowPilot"
+  name = "eks-${var.env}-cluster-iam-role-for"
 
   tags = {
-    Name = "eks-${var.env}-cluster-role-ShowPilot"
-    "pick" = "ShowPilot"
+    Name = "eks-${var.env}-cluster-role"
+    "pick" = "${var.pick}"
   }
   
   assume_role_policy = <<POLICY

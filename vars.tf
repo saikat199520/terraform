@@ -1,9 +1,3 @@
-variable "env" {
-  type        = string
-  default     = "ShowPilot-prod"
-  description = "Production Environment"
-}
-
 variable "k8s-ver" {
   default     = "1.30"
   description = "K8s Version"
@@ -12,5 +6,21 @@ variable "k8s-ver" {
 variable "region" {
   type        = string
   default     = "us-east-2"
-  description = "Prod Region Ohio"
+  description = "Region"
+}
+variable "pick" {
+  type = string
+  default = "test"
+}
+
+variable "env-in" {
+  type        = string
+  default     = "prod"
+  description = "Environment"
+}
+
+variable "env" {
+  type        = string
+  default     = "${var.pick}-${var.env-in}"
+  description = "Production Environment"
 }

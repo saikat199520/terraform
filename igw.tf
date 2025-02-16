@@ -2,7 +2,7 @@ resource "aws_internet_gateway" "eks-igw" {
   vpc_id = aws_vpc.eks-vpc.id
 
   tags = {
-    Name = "eks-${var.env}-igw-ShowPilot"
-    "pick" = "ShowPilot"
+    Name = "eks-${var.env}-igw"
+    "pick" = "${var.pick}"
   }
 }
