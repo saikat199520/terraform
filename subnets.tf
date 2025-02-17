@@ -1,6 +1,6 @@
 resource "aws_subnet" "eks-vpc-pub-sub1" {
   vpc_id     = aws_vpc.eks-vpc.id
-  cidr_block = "10.20.0.0/20"
+  cidr_block = "${pub-sub-1-cidr}"
 
   tags = {
     Name                        = "eks-${var.env}-pub-${var.region}a-sub1"
@@ -15,7 +15,7 @@ resource "aws_subnet" "eks-vpc-pub-sub1" {
 
 resource "aws_subnet" "eks-vpc-pub-sub2" {
   vpc_id     = aws_vpc.eks-vpc.id
-  cidr_block = "10.20.16.0/20"
+  cidr_block = "${pub-sub-2-cidr}"
 
   tags = {
     Name                        = "eks-${var.env}-pub-${var.region}b-sub2"
@@ -30,7 +30,7 @@ resource "aws_subnet" "eks-vpc-pub-sub2" {
 
 resource "aws_subnet" "eks-vpc-priv-sub1" {
   vpc_id     = aws_vpc.eks-vpc.id
-  cidr_block = "10.20.32.0/20"
+  cidr_block = "${pri-sub-1-cidr}"
 
   tags = {
     Name                              = "eks-${var.env}-priv-${var.region}a-sub1"
@@ -44,7 +44,7 @@ resource "aws_subnet" "eks-vpc-priv-sub1" {
 
 resource "aws_subnet" "eks-vpc-priv-sub2" {
   vpc_id     = aws_vpc.eks-vpc.id
-  cidr_block = "10.20.64.0/20"
+  cidr_block = "${pri-sub-2-cidr}"
 
   tags = {
     Name                              = "eks-${var.env}-priv-${var.region}b-sub2"

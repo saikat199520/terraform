@@ -1,5 +1,5 @@
 resource "aws_vpc" "eks-vpc" {
-  cidr_block       = "10.20.0.0/16"
+  cidr_block       = "${vpc-cidr}"
   instance_tenancy = "default"
 
   tags = {
