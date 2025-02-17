@@ -81,6 +81,6 @@ variable "force_update_version" {
 
 variable "instance_types" {
   type        = string
-  default     = "t3a.larget3a.large"
+  default     = "t3a.large"
   description = "instance_types"
 }
