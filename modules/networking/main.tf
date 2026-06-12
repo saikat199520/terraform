@@ -106,7 +106,7 @@ resource "aws_security_group" "pg_sg"{
     vpc_id = aws_vpc.vpc.id
 
     ingress{
-        from_port = 0
+        from_port = 5432
         to_port = 5432
         protocol = "tcp"
         security_groups = [aws_security_group.eks_nodes.id]
@@ -127,7 +127,7 @@ resource "aws_security_group" "mysql_sg"{
     vpc_id = aws_vpc.vpc.id
 
     ingress{
-        from_port = 0
+        from_port = 3306
         to_port = 3306
         protocol = "tcp"
         security_groups = [aws_security_group.eks_nodes.id]
@@ -149,7 +149,7 @@ resource "aws_security_group" "redis_sg"{
     vpc_id = aws_vpc.vpc.id
 
     ingress{
-        from_port = 0
+        from_port = 6379
         to_port = 6379
         protocol = "tcp"
         security_groups = [aws_security_group.eks_nodes.id]
