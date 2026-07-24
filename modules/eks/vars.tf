@@ -17,7 +17,7 @@ variable "eks_cluster_sg_id" {
 variable "eks_nodes_sg_id" {
     type = string
 }
-variable "node_ami_id" {
+variable "node_ami_type" {
     type = string
 }
 variable "eks_cluster_role_arn" {

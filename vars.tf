@@ -42,7 +42,7 @@ variable "private_subnets"{
 variable "cluster_version" {
     type = string
 }
-variable "node_ami_id" {
+variable "node_ami_type" {
     type = string
 }
 variable "node_instance_types" {

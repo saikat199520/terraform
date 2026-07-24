@@ -30,7 +30,7 @@ module "eks" {
     node_desired_size = var.node_desired_size
     cluster_version = var.cluster_version
     node_instance_types = var.node_instance_types
-    node_ami_id = var.node_ami_id
+    node_ami_type = var.node_ami_type
     depends_on = [
     module.networking,
     module.access
