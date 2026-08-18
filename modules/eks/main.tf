@@ -14,8 +14,6 @@ resource "aws_eks_cluster" "eks"{
 resource "aws_launch_template" "nodes_launch_template" {
     name_prefix = "${var.env}-${var.name}-eks-node-"
     description = "Unified launch template for EKS managed worker nodes"
- #   image_id      = var.node_ami_id        # Pass an explicit custom AMI ID if you have one
- #   instance_type = var.node_instance_types[0] # Takes your preferred type from the list
     vpc_security_group_ids = [var.eks_nodes_sg_id]
     
     block_device_mappings {
