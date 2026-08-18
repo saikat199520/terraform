@@ -1,5 +1,6 @@
 aws_region = "ap-south-2"
 profile = "hi"
+eks_admin_user_arns = ["arn:aws:iam::1234567890:root"]
 vpc_cidr =  "10.0.0.0/16"
 env = "test"
 name = "run"

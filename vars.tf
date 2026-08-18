@@ -6,6 +6,10 @@ variable "profile" {
     type = string
     default = "default"
 }
+variable "eks_admin_user_arns"{
+    type = list(string)
+    default     = ["arn:aws:iam::207791567608:root"]
+}
 variable "env"{
     type = string
 }

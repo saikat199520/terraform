@@ -36,3 +36,11 @@ module "eks" {
     module.access
   ]
 }
+module "accessgrantslater" {
+    source = "./modules/accessgrantslater"
+    eks_cluster_name = module.eks.cluster_name
+    eks_admin_user_arns = var.eks_admin_user_arns
+    depends_on = [
+    module.eks
+  ]
+}
