@@ -15,6 +15,10 @@ resource "aws_eks_cluster" "eks"{
         bootstrap_cluster_creator_admin_permissions = true
     }
 
+    upgrade_policy {
+    support_type = "STANDARD"
+    }
+
 }
 
 resource "aws_launch_template" "nodes_launch_template" {
@@ -52,7 +56,7 @@ resource "aws_eks_node_group" "nodes" {
         min_size = var.node_min_size
     }
     update_config{
-        max_unavailable = 1
+        max_unavailable = var.node_max_unavailable
     }
 
     labels = {
