@@ -8,3 +8,9 @@ variable "eks_cluster_name" {
 variable "eks_cluster_oidc_issuer_url" {
     type = string
 }
+variable "env"{
+    type = string
+}
+variable "name"{
+    type = string
+}

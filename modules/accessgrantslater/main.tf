@@ -39,7 +39,63 @@ resource "aws_eks_access_policy_association" "cluster_policy" {
   }
 }
 
-resource "aws_iam_openid_connect_provider" "eks" {
-    client_id_list = ["sts.amazomeaws.com"]
+resource "aws_iam_openid_connect_provider" "eks" { #creating a trusted oidc provider in aws
+    client_id_list = ["sts.amazonaws.com"]
     url = var.eks_cluster_oidc_issuer_url
 }
+
+resource "aws_iam_role" "ebs_efs_shared_role" { # creating shared efs ebs storage role
+  name  = "${var.env}-${var.name}-ebs-efs-shared-role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = {
+        Federated = aws_iam_openid_connect_provider.eks.arn
+      }
+      Action = "sts:AssumeRoleWithWebIdentity"
+      Condition = {
+        StringEquals = {
+          "${replace(aws_iam_openid_connect_provider.eks.url, "https://", "")}:aud" = "sts.amazonaws.com"
+        }
+        StringLike = {
+          # Allows both ebs-csi and efs-csi service accounts
+          "${replace(aws_iam_openid_connect_provider.eks.url, "https://", "")}:sub" = ["system:serviceaccount:kube-system:efs-csi-controller-sa","system:serviceaccount:kube-system:ebs-csi-controller-sa"]
+        }
+      }
+    }]
+  })
+}
+resource "aws_iam_role_policy_attachment" "ebs_csi_policy_attachment" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+  role = aws_iam_role.ebs_efs_shared_role.name
+}
+resource "aws_iam_role_policy_attachment" "efs_csi_policy_attachment" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
+  role = aws_iam_role.ebs_efs_shared_role.name
+}
+
+#resource "aws_iam_role" "vpc_cni_role" {
+#  name = "${var.env}-${var.name}-vpc-cni-role"
+
+#  assume_role_policy = jsonencode({
+#    Version = "2012-10-17"
+#    Statement = [{
+#      Effect = "Allow"
+#      Principal = {
+#        Federated = aws_iam_openid_connect_provider.eks.arn
+#      }
+#      Action = "sts:AssumeRoleWithWebIdentity"
+#      Condition = {
+#        StringEquals = {
+#          "${replace(aws_iam_openid_connect_provider.eks.url, "https://", "")}:aud" = "sts.amazonaws.com"
+#          "${replace(aws_iam_openid_connect_provider.eks.url, "https://", "")}:sub" = "system:serviceaccount:kube-system:aws-node"
+#        }
+#      }
+#    }]
+#  })
+#}
+#resource "aws_iam_role_policy_attachment" "vpc_cni_policy_attachment"{
+#  policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+#  role  = aws_iam_role.vpc_cni_role.name
+#}
