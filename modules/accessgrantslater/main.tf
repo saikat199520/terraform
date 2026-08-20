@@ -38,3 +38,8 @@ resource "aws_eks_access_policy_association" "cluster_policy" {
     type = "cluster"
   }
 }
+
+resource "aws_iam_openid_connect_provider" "eks" {
+    client_id_list = ["sts.amazomeaws.com"]
+    url = var.eks_cluster_oidc_issuer_url
+}

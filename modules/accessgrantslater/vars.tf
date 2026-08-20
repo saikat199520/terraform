@@ -5,3 +5,6 @@ variable "eks_admin_user_arns"{
 variable "eks_cluster_name" {
     type = string
 }
+variable "eks_cluster_oidc_issuer_url" {
+    type = string
+}

@@ -39,6 +39,7 @@ module "eks" {
 module "accessgrantslater" {
     source = "./modules/accessgrantslater"
     eks_cluster_name = module.eks.cluster_name
+    eks_cluster_oidc_issuer_url = module.eks.cluster_oidc_issuer_url
     eks_admin_user_arns = var.eks_admin_user_arns
     depends_on = [
     module.eks
