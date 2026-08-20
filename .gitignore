@@ -5,3 +5,4 @@ terraform.tfstate.backup
 *.tfstate.*
 .terraform.lock.hcl
 .terraform/
+temp_copy
