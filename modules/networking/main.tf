@@ -23,8 +23,8 @@ resource "aws_subnet" "public"{
 
     tags = {
         Name = "${var.env}-${var.name}-public_subnet-${var.zones_public[count.index]}"
-        #"kubernetes.io/role/elb" = "1"
-        #"kubernetes.io/cluster/${var.env}-${var.name}-eks" = "shared"
+        "kubernetes.io/role/elb" = "1"
+        "kubernetes.io/cluster/${var.env}-${var.name}-eks-cluster" = "shared"
 
     }
 }
@@ -36,8 +36,8 @@ resource "aws_subnet" "private"{
     
     tags = {
         Name = "${var.env}-${var.name}-private_subnet-${var.zones_private[count.index]}"
-        #"kubernetes.io/role/elb" = "1"
-        #"kubernetes.io/cluster/${var.env}-${var.name}-eks" = "shared"
+        "kubernetes.io/role/internal-elb" = "1"
+        "kubernetes.io/cluster/${var.env}-${var.name}-eks-cluster" = "shared"
 
     }
 }
@@ -107,7 +107,7 @@ resource "aws_security_group" "eks_nodes"{
 
     tags = {
         Name = "${var.env}-${var.name}-eks-worker-sg"
-        "kubernetes.io/cluster/${var.env}-${var.name}-eks" = "owned"
+        "kubernetes.io/cluster/${var.env}-${var.name}-eks-cluster" = "owned"
     }
 }
 
@@ -136,7 +136,7 @@ resource "aws_security_group" "eks_cluster"{
 
     tags = {
         Name = "${var.env}-${var.name}-eks-cluster-sg"
-        "kubernetes.io/cluster/${var.env}-${var.name}-eks" = "owned"
+        "kubernetes.io/cluster/${var.env}-${var.name}-eks-cluster" = "owned"
     }
 }
 
