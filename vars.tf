@@ -62,3 +62,6 @@ variable "node_max_size" {
 variable "node_desired_size" {
     type = number
 }
+variable "node_max_unavailable" {
+    type = number
+}
