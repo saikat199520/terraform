@@ -1,14 +1,14 @@
 
 ##################################for only giving access to the root
 #resource "aws_eks_access_entry" "root_user_access" {
-#  cluster_name  = aws_eks_cluster.eks.name
+#  cluster_name  = var.eks_cluster_name
 #  principal_arn = "arn:aws:iam::1234567890:root" 
 #  type          = "STANDARD"
 #}
 
 # 2. Grant Cluster Admin permissions inside Kubernetes
 #resource "aws_eks_access_policy_association" "root_user_policy" {
-#  cluster_name  = aws_eks_cluster.eks.name
+#  cluster_name  = var.eks_cluster_name
 #  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
 #  principal_arn = aws_eks_access_entry.root_user_access.principal_arn
 
