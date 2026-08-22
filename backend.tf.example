@@ -1,0 +1,11 @@
+terraform {
+    backend "s3" {
+        bucket = "env-name-tfstate-storage"
+        key = "terraform.tfstate"
+        region         = "ap-south-2"                          # Your AWS Region
+        use_lockfile   = true                  # Matches DynamoDB table created above
+        encrypt        = true
+        kms_key_id   = "arn:aws:kms:ap-south-2:1234567890:alias/aws/s3" #dummy account
+        profile      = "profile_name" #if using custome profile else comment out or remove
+    }
+}
