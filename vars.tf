@@ -65,3 +65,6 @@ variable "node_desired_size" {
 variable "node_max_unavailable" {
     type = number
 }
+variable "domain"{
+    type = string
+}

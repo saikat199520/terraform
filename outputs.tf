@@ -12,3 +12,11 @@ output "oidc_provider_url" {
   description = "The URL of the IAM OIDC Provider"
   value       = module.accessgrantslater.oidc_provider_url
 }
+
+output "acm_dns_records" {
+    value = module.networking.acm_dns_records
+}
+
+output "acm_ssl_arn" {
+    value = module.networking.acm_ssl_arn
+}
