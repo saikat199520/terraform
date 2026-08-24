@@ -10,6 +10,7 @@ module "networking"{
     zones_private = var.zones_private
     dns_hostname = var.dns_hostname
     dns_support = var.dns_support
+    domain = var.domain
 }
 module "access" {
     source = "./modules/access"
@@ -39,6 +40,7 @@ module "accessgrantslater" {
     env =  var.env
     name = var.name
     eks_cluster_name = module.eks.cluster_name
+    eks_node_role_name = module.access.eks_node_role_name
     eks_cluster_oidc_issuer_url = module.eks.cluster_oidc_issuer_url
     eks_admin_user_arns = var.eks_admin_user_arns
     depends_on = [module.eks]
@@ -47,6 +49,7 @@ module "eksaddons" {
     source = "./modules/eksaddons"
     eks_cluster_name = module.eks.cluster_name
     aws_eks_extra_storage_roles = module.accessgrantslater.storage_roles
-    #aws_eks_vpc_cni_role =  module.accessgrantslater.vpc_cni_role
+    ssl_arn = module.networking.acm_ssl_arn
+    domain = var.domain
     depends_on = [module.eks,module.accessgrantslater]
 }
