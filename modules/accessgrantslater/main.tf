@@ -336,7 +336,7 @@ resource "aws_iam_policy" "aws_eks_loadbalancer_policy" {
 
 resource "aws_iam_role_policy_attachment" "aws_eks_loadbalancer_policy_attachment" {
   policy_arn = aws_iam_policy.aws_eks_loadbalancer_policy.arn
-  role = var.eks_node_role_arn
+  role = var.eks_node_role_name
 }
 
 #resource "aws_iam_role" "vpc_cni_role" {
