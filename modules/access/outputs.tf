@@ -7,3 +7,7 @@ output "eks_node_role_arn" {
   description = "The ARN of the IAM role for the EKS worker nodes"
   value       = aws_iam_role.eks_node_role.arn
 }
+output "eks_node_role_name" {
+  description = "The ARN of the IAM role for the EKS worker nodes"
+  value       = aws_iam_role.eks_node_role.name
+}
