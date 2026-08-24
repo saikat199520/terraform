@@ -31,3 +31,6 @@ variable "zones_private"{
 variable "private_subnets"{
     type = list(string)
 }
+variable "domain"{
+    type = string
+}

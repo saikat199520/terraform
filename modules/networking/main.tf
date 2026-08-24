@@ -236,3 +236,13 @@ resource "aws_security_group" "redis_sg"{
         Name = "${var.env}-${var.name}-redis-sg"
     }
 }
+resource "aws_acm_certificate" "ssl" {
+    domain_name = "*.${var.domain}"
+    validation_method = "DNS"
+
+    subject_alternative_names = ["*.${var.domain}"]
+
+    lifecycle {
+      create_before_destroy = true
+    }
+}

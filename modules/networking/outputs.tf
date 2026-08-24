@@ -18,3 +18,15 @@ output "eks_nodes_sg_id" {
     description = "The ID of the EKS cluster control plane security group"
     value       = aws_security_group.eks_nodes.id
 }
+output "acm_dns_records" {
+    value = {
+        for dvo in aws_acm_certificate.ssl.domain_validation_options : dvo.domain_name => {
+            name = dvo.resource_record_name
+            type = dvo.resource_record_type
+            value = dvo.resource_record_value
+        }
+    }
+}
+output "acm_ssl_arn" {
+    value = aws_acm_certificate.ssl.arn
+}
