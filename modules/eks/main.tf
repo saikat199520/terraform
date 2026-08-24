@@ -26,6 +26,12 @@ resource "aws_launch_template" "nodes_launch_template" {
     description = "Unified launch template for EKS managed worker nodes"
     vpc_security_group_ids = [var.eks_nodes_sg_id]
     
+    metadata_options {
+        http_endpoint               = "enabled"
+        http_tokens                 = "required" # Forces IMDSv2
+        http_put_response_hop_limit = 2          # Allows pod network hop to reach IMDS
+    }
+
     block_device_mappings {
         device_name = "/dev/xvda"
         ebs {
