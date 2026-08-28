@@ -23,8 +23,8 @@ jobs:
       
       - name: Terraform install
         uses: hashicorp/setup-terraform@v3
-          with:
-            terraform_version: "1.7.0"
+        with:
+           terraform_version: "1.7.0"
       
       - name: Initialize and apply terraform
         run: |
