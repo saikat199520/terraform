@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   apply:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Code pull
         uses: actions/checkout@v4
