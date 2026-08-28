@@ -1,12 +1,12 @@
 variable "aws_eks_extra_storage_roles" {
-    type = string
+  type = string
 }
 variable "eks_cluster_name" {
-    type = string
+  type = string
 }
 variable "ssl_arn" {
-   type = string
+  type = string
 }
-variable "domain"{
-    type = string
+variable "domain" {
+  type = string
 }

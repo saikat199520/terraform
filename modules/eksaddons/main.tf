@@ -1,9 +1,9 @@
 resource "aws_eks_addon" "ebs_csi" {
-  cluster_name = var.eks_cluster_name
-  addon_name = "aws-ebs-csi-driver"
+  cluster_name             = var.eks_cluster_name
+  addon_name               = "aws-ebs-csi-driver"
   service_account_role_arn = var.aws_eks_extra_storage_roles
-  
-  configuration_values = jsonencode({  ######have reduced the replica set to 1 for budget constraint
+
+  configuration_values = jsonencode({ ######have reduced the replica set to 1 for budget constraint
     controller = {
       replicaCount = 1
     }
@@ -11,11 +11,11 @@ resource "aws_eks_addon" "ebs_csi" {
 
 }
 resource "aws_eks_addon" "efs_csi" {
-  cluster_name = var.eks_cluster_name
-  addon_name = "aws-efs-csi-driver"
+  cluster_name             = var.eks_cluster_name
+  addon_name               = "aws-efs-csi-driver"
   service_account_role_arn = var.aws_eks_extra_storage_roles
-  
-  configuration_values = jsonencode({  ######have reduced the replica set to 1 for budget constraint
+
+  configuration_values = jsonencode({ ######have reduced the replica set to 1 for budget constraint
     controller = {
       replicaCount = 1
     }
@@ -25,19 +25,19 @@ resource "aws_eks_addon" "efs_csi" {
 
 resource "aws_eks_addon" "secrets_store" {
   cluster_name = var.eks_cluster_name
-  addon_name = "aws-secrets-store-csi-driver-provider"
+  addon_name   = "aws-secrets-store-csi-driver-provider"
 
 }
 resource "aws_eks_addon" "metrics_server" {
   cluster_name = var.eks_cluster_name
-  addon_name = "metrics-server"
-  
-  configuration_values = jsonencode({  ######have reduced the replica set to 1 for budget constraint
+  addon_name   = "metrics-server"
+
+  configuration_values = jsonencode({ ######have reduced the replica set to 1 for budget constraint
     replicas = 1
   })
 }
 
-esource "helm_release" "cert_manager" {
+resource "helm_release" "cert_manager" {
   name             = "cert-manager"
   repository       = "https://charts.jetstack.io"
   chart            = "cert-manager"
@@ -91,6 +91,7 @@ resource "helm_release" "aws_load_balancer_controller" {
   ]
   depends_on = [helm_release.cert_manager]
 }
+
 
 resource "helm_release" "ingress_nginx" {
   name             = "ingress-nginx"
@@ -159,17 +160,18 @@ resource "helm_release" "argocd" {
       value = "false"
     }
   ]
+  depends_on = [helm_release.ingress_nginx]
 }
 
 
 resource "helm_release" "argo-rollouts" {
-  name = "argo-rollout"
-  repository= "https://argoproj.github.io/argo-helm"
-  chart = "argo-rollouts"
-  namespace = "argo-rollouts"
+  name             = "argo-rollout"
+  repository       = "https://argoproj.github.io/argo-helm"
+  chart            = "argo-rollouts"
+  namespace        = "argo-rollouts"
   create_namespace = true
-  version = "2.38.0"
- # depends_on = [helm_release.argocd]
+  version          = "2.38.0"
+  # depends_on = [helm_release.argocd]
 }
 
 #resource "aws_eks_addon" "kube_state_metrics" {  #### if using prometheus you can turn this on and turn off metrics server

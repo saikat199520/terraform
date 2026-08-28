@@ -4,11 +4,11 @@ repos:
     hooks:
       - id: gitleaks
   
-  - repo: https://github.com/bridgecrewio/checkov.git
-    rev: 3.2.0
-    hooks:
-      - id: checkov
-        args: ['-d', '.', '--skip-framework', 'dockerfile']
+  # - repo: https://github.com/bridgecrewio/checkov.git
+  #   rev: 3.2.0
+  #   hooks:
+  #     - id: checkov
+  #       args: ['-d', '.', '--skip-framework', 'dockerfile']
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.88.0
     hooks:

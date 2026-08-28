@@ -1,43 +1,43 @@
 
-variable "env"{
-    type = string
+variable "env" {
+  type = string
 }
-variable "name"{
-    type = string
+variable "name" {
+  type = string
 }
 variable "cluster_version" {
-    type = string
+  type = string
 }
 variable "private_subnet_ids" {
-    type = list(string)
+  type = list(string)
 }
 variable "eks_cluster_sg_id" {
-    type = string
+  type = string
 }
 variable "eks_nodes_sg_id" {
-    type = string
+  type = string
 }
 variable "node_ami_type" {
-    type = string
+  type = string
 }
 variable "eks_cluster_role_arn" {
-    type = string
+  type = string
 }
 variable "eks_node_role_arn" {
-    type = string
+  type = string
 }
 variable "node_instance_types" {
-    type = list(string)
+  type = list(string)
 }
 variable "node_min_size" {
-    type = number
+  type = number
 }
 variable "node_max_size" {
-    type = number
+  type = number
 }
 variable "node_desired_size" {
-    type = number
+  type = number
 }
 variable "node_max_unavailable" {
-    type = number
+  type = number
 }
