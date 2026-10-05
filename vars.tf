@@ -11,60 +11,74 @@ variable "eks_admin_user_arns" {
   default = ["arn:aws:iam::207791567608:root"]
 }
 variable "env" {
-  type = string
+  type    = string
+  default = "test"
 }
 variable "name" {
-  type = string
+  type    = string
+  default = "run"
 }
 variable "vpc_cidr" {
-  type = string
+  type    = string
+  default = "10.0.0.0/16"
 }
 variable "dns_hostname" {
-  type = bool
+  type    = bool
+  default = true
 }
 variable "dns_support" {
-  type = bool
+  type    = bool
+  default = true
 }
 variable "zones_public" {
   type    = list(string)
   default = ["ap-south-1a", "ap-south-1b"]
 }
 variable "public_subnets" {
-  type = list(string)
+  type    = list(string)
+  default = ["10.0.1.0/24", "10.0.2.0/24"]
 }
 variable "public_ip" {
   type    = list(bool)
-  default = [true, true]
+  default = [true, false]
 }
 variable "zones_private" {
   type    = list(string)
-  default = ["ap-south-1a", "ap-south-1b"]
+  default = ["ap-south-2b", "ap-south-2c"]
 }
 variable "private_subnets" {
-  type = list(string)
+  type    = list(string)
+  default = ["10.0.100.0/24", "10.0.101.0/24"]
 }
 variable "cluster_version" {
-  type = string
+  type    = string
+  default = "1.34"
 }
 variable "node_ami_type" {
-  type = string
+  type    = string
+  default = "AL2023_ARM_64_STANDARD"
 }
 variable "node_instance_types" {
   type    = list(string)
   default = ["t4g.small"]
 }
 variable "node_min_size" {
-  type = number
+  type    = number
+  default = 0
 }
 variable "node_max_size" {
-  type = number
+  type    = number
+  default = 2
 }
 variable "node_desired_size" {
-  type = number
+  type    = number
+  default = 0
 }
 variable "node_max_unavailable" {
-  type = number
+  type    = number
+  default = 1
 }
 variable "domain" {
-  type = string
+  type    = string
+  default = "xyz.com"
 }
